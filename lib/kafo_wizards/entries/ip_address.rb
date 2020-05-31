@@ -1,3 +1,5 @@
+require 'resolv'
+
 module KafoWizards::Entries
 
   class IPAddressEntry < StringEntry
