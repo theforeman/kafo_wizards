@@ -5,7 +5,7 @@ end
 require 'minitest/autorun'
 require 'minitest/spec'
 require 'minitest/mock'
-require "mocha/setup"
+require "mocha/minitest"
 
 require 'kafo_wizards'
 
