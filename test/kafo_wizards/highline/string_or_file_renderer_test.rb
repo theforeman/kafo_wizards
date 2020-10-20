@@ -12,11 +12,11 @@ describe KafoWizards::HighLine::StringOrFileRenderer do
 
   describe 'render value' do
     it "prints text shortened on one line" do
-      renderer.render_value(entry).must_match /\.\.\./
+      renderer.render_value(entry).must_match(/\.\.\./)
     end
 
     it 'prints lenght' do
-      renderer.render_value(entry).must_match /(70 bytes)/
+      renderer.render_value(entry).must_match(/(70 bytes)/)
     end
 
     it 'prints empty string for nil' do

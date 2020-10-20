@@ -43,12 +43,12 @@ describe KafoWizards::HighLine::StringRenderer do
 
     it 'asks for a new value' do
       renderer.render_action(entry)
-      highline_output.must_match /New value for Name:/
+      highline_output.must_match(/New value for Name:/)
     end
 
     it 'prints the entry description' do
       renderer.render_action(entry)
-      highline_output.must_match /Descr/
+      highline_output.must_match(/Descr/)
     end
   end
 end

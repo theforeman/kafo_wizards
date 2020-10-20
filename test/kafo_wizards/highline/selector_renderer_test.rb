@@ -41,9 +41,9 @@ describe KafoWizards::HighLine::SelectorRenderer do
       entry.stubs(:update).returns('xxx')
       renderer.render_action(entry)
       out = highline_output
-      out.must_match /Select Name: /
-      out.must_match /1. Tom/
-      out.must_match /2. Jerry/
+      out.must_match(/Select Name: /)
+      out.must_match(/1. Tom/)
+      out.must_match(/2. Jerry/)
     end
 
     it 'should return nil' do

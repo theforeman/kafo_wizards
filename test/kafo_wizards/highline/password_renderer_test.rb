@@ -11,7 +11,7 @@ describe KafoWizards::HighLine::PasswordRenderer do
 
   describe 'render value' do
     it "should print stars instead of the password" do
-      renderer.render_value(entry).must_match /\*{10}/
+      renderer.render_value(entry).must_match(/\*{10}/)
     end
   end
 
@@ -39,8 +39,8 @@ describe KafoWizards::HighLine::PasswordRenderer do
       e.stubs(:update).returns('xxx')
       renderer.render_action(e)
       out = highline_output
-      out.must_match /Enter new password: \*{8}/
-      out.wont_match /PASSWORD/
+      out.must_match(/Enter new password: \*{8}/)
+      out.wont_match(/PASSWORD/)
     end
   end
 
@@ -71,9 +71,9 @@ describe KafoWizards::HighLine::PasswordRenderer do
       e.stubs(:update).returns('xxx')
       renderer.render_action(e)
       out = highline_output
-      out.must_match /Enter new password: \*{8}/
-      out.must_match /Re-type new password: \*{8}/
-      out.wont_match /PASSWORD/
+      out.must_match(/Enter new password: \*{8}/)
+      out.must_match(/Re-type new password: \*{8}/)
+      out.wont_match(/PASSWORD/)
     end
   end
 
