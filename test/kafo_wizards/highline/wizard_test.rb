@@ -34,30 +34,30 @@ describe KafoWizards::HighLine::Wizard do
     end
 
     it 'prints header' do
-      wizard_output.must_match /Header/
+      wizard_output.must_match(/Header/)
     end
 
     it 'prints current values' do
-      wizard_output.must_match /Name: 'Any'/
+      wizard_output.must_match(/Name: 'Any'/)
     end
 
     it 'prints description' do
-      wizard_output.must_match /Description/
+      wizard_output.must_match(/Description/)
     end
 
     it 'prints choices' do
       out = wizard_output
-      out.must_match /Ok/
-      out.must_match /Change Name/
-      out.must_match /Cancel/
+      out.must_match(/Ok/)
+      out.must_match(/Change Name/)
+      out.must_match(/Cancel/)
     end
 
     it "prints the default button first" do
-      wizard_output.must_match /1\. Ok/
+      wizard_output.must_match(/1\. Ok/)
     end
 
     it "prints the remaining buttons at the end" do
-      wizard_output.must_match /3\. Cancel/
+      wizard_output.must_match(/3\. Cancel/)
     end
 
     it "returns button pressed" do
@@ -117,7 +117,7 @@ describe KafoWizards::HighLine::Wizard do
       input.rewind
       wizard.entries = [ok, cancel, factory.string(:name, :required => true)]
       wizard.execute_menu.must_equal :cancel
-      highline_output.must_match /Name must be present/
+      highline_output.must_match(/Name must be present/)
     end
 
     it "triggers hooks" do
@@ -138,15 +138,15 @@ describe KafoWizards::HighLine::Wizard do
       wizard.print_values
       out = highline_output
 
-      out.must_match /Name: 'Any'/
-      out.must_match /Age: ''/
-      out.wont_match /Ok/
+      out.must_match(/Name: 'Any'/)
+      out.must_match(/Age: ''/)
+      out.wont_match(/Ok/)
     end
 
     it 'prints required values with asterisk' do
       wizard.entries = [ok, name, factory.string(:age, :required => true)]
       wizard.print_values
-      highline_output.must_match /\*Age/
+      highline_output.must_match(/\*Age/)
 
     end
   end
