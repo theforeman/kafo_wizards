@@ -23,5 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "mocha"
   spec.add_development_dependency "ci_reporter"
 
-  spec.add_dependency 'highline', '< 2'
+  spec.add_dependency 'highline', '< 3'
 end
