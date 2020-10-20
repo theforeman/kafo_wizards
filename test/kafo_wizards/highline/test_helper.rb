@@ -1,8 +1,11 @@
 HighLine.use_color = false
 
 def highline_output_setup
-  $terminal.instance_variable_set '@input', input
-  $terminal.instance_variable_set '@output', output
+  if ::HighLine.respond_to?(:default_instance)
+    ::HighLine.default_instance = ::HighLine.new(input, output)
+  else
+    $terminal = ::HighLine.new(input, output)
+  end
 end
 
 def setup_highline_wizard(header='Header', options={})
