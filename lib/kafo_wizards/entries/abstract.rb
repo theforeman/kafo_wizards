@@ -18,9 +18,9 @@ module KafoWizards::Entries
     def display_type(with_ancestry=false)
       classes = self.class.ancestors.select { |cls| cls.name =~ /Entry\Z/ }
       if with_ancestry
-        result = classes.map { |cls| class_to_underscore(cls.name) }
+        classes.map { |cls| class_to_underscore(cls.name) }
       else
-        result = class_to_underscore(classes.first.name)
+        class_to_underscore(classes.first.name)
       end
     end
 
