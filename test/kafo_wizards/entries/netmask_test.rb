@@ -31,7 +31,8 @@ describe KafoWizards::Entries::NetmaskEntry do
       err = proc {
         netmask.validate('127001/56')
       }.must_raise KafoWizards::ValidationError
-      err.message.must_equal "127001/56 is not valid netmask (invalid length)"
+      expected_error_message = "127001/56 is not valid netmask (invalid length: 4294967295)"
+      err.message.must_equal expected_error_message
     end
 
   end
