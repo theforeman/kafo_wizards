@@ -4,7 +4,7 @@ require File.join(File.dirname(__FILE__), 'test_helper')
 describe KafoWizards::HighLine::Wizard do
   let(:input) { StringIO.new }
   let(:output) { StringIO.new }
-  let(:name) { factory.string(:name, :default_value => 'Any') }
+  let(:default_name) { factory.string(:name, :default_value => 'Any') }
   let(:age) { factory.string(:age) }
   let(:ok) { factory.button(:ok, :label => 'Ok', :default => true) }
   let(:cancel) { factory.button(:cancel, :label => 'Cancel', :default => false, :trigger_validation => false) }
@@ -27,7 +27,7 @@ describe KafoWizards::HighLine::Wizard do
     let(:wizard_output) do
       input.puts '1'
       input.rewind
-      wizard.entries = [name, cancel, ok]
+      wizard.entries = [default_name, cancel, ok]
       wizard.interactive = true
       wizard.execute_menu
       highline_output
@@ -63,7 +63,7 @@ describe KafoWizards::HighLine::Wizard do
     it "returns button pressed" do
       input.puts '1'
       input.rewind
-      wizard.entries = [name, cancel, ok]
+      wizard.entries = [default_name, cancel, ok]
       result = wizard.execute_menu
       result.must_equal :ok
     end
@@ -72,7 +72,7 @@ describe KafoWizards::HighLine::Wizard do
       input.puts '2' # change name
       input.puts '1' # ok
       input.rewind
-      wizard.entries = [name, cancel, ok]
+      wizard.entries = [default_name, cancel, ok]
       wizard.renderers[:string].expects(:render_action).returns(nil)
       wizard.execute_menu
     end
@@ -81,7 +81,7 @@ describe KafoWizards::HighLine::Wizard do
       input.puts '2' # change name
       input.puts '1' # ok
       input.rewind
-      wizard.entries = [name, cancel, ok]
+      wizard.entries = [default_name, cancel, ok]
       wizard.renderers[:string].expects(:render_action).twice.raises(KafoWizards::ValidationError).then.returns(nil)
       wizard.execute_menu
     end
@@ -90,7 +90,7 @@ describe KafoWizards::HighLine::Wizard do
       input.puts '2' # change name
       input.puts '1' # ok
       input.rewind
-      wizard.entries = [name, cancel, ok]
+      wizard.entries = [default_name, cancel, ok]
       wizard.renderers[:string].expects(:render_action).raises(Interrupt)
       wizard.execute_menu
     end
@@ -134,7 +134,7 @@ describe KafoWizards::HighLine::Wizard do
 
   describe 'print_values' do
     it "prints everything but buttons" do
-      wizard.entries = [ok, name, age]
+      wizard.entries = [ok, default_name, age]
       wizard.print_values
       out = highline_output
 
@@ -144,7 +144,7 @@ describe KafoWizards::HighLine::Wizard do
     end
 
     it 'prints required values with asterisk' do
-      wizard.entries = [ok, name, factory.string(:age, :required => true)]
+      wizard.entries = [ok, default_name, factory.string(:age, :required => true)]
       wizard.print_values
       highline_output.must_match(/\*Age/)
 
@@ -153,8 +153,8 @@ describe KafoWizards::HighLine::Wizard do
 
   describe 'render_value' do
     it 'should try value renderer by class of the entry' do
-      KafoWizards::HighLine::StringRenderer.any_instance.expects(:render_value).with(name).returns('Any')
-      wizard.render_value(name).must_equal 'Any'
+      KafoWizards::HighLine::StringRenderer.any_instance.expects(:render_value).with(default_name).returns('Any')
+      wizard.render_value(default_name).must_equal 'Any'
     end
   end
 end

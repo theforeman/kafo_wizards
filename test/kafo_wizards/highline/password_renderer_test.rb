@@ -30,7 +30,7 @@ describe KafoWizards::HighLine::PasswordRenderer do
 
     it "should call entry update" do
       e = entry
-      e.expects(:update).with({:password => 'PASSWORD'}).returns(nil)
+      e.expects(:update).with(password: 'PASSWORD').returns(nil)
       renderer.render_action(e)
     end
 
@@ -62,7 +62,7 @@ describe KafoWizards::HighLine::PasswordRenderer do
 
     it "should call entry update" do
       e = entry
-      e.expects(:update).with({:password => 'PASSWORD', :password_confirmation => 'PASSWORD'}).returns(nil)
+      e.expects(:update).with(password: 'PASSWORD', password_confirmation: 'PASSWORD').returns(nil)
       renderer.render_action(e)
     end
 

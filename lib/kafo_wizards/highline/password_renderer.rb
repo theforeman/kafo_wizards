@@ -9,10 +9,10 @@ module KafoWizards
       def render_action(entry)
         password = ask("Enter new password: ") { |q| q.echo = "*" }
         if !entry.confirmation_required?
-          entry.update(:password => password)
+          entry.update(password: password)
         else
           password_confirmation = ask("Re-type new password: ") { |q| q.echo = "*" }
-          entry.update(:password => password, :password_confirmation => password_confirmation)
+          entry.update(password: password, password_confirmation: password_confirmation)
         end
         nil
       end
