@@ -48,8 +48,9 @@ describe 'KafoWizards::Factory' do
   end
 
   it "raises NameError for unknown type" do
-    e = Proc.new { factory.nonsense(:sth) }.must_raise NameError
-    e.message.must_equal "Unknown type of entry (nonsense)"
+    assert_raises(NameError, "Unknown type of entry (nonsense)") do
+      factory.nonsense(:sth)
+    end
   end
 
 
