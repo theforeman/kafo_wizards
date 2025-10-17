@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Wizard like interfaces in terminal}
   spec.description   = %q{This gem helps to create wizard like interfaces in terminal applications, has support for nesting and value validation}
   spec.homepage      = "https://github.com/theforeman/kafo_wizards"
-  spec.license       = "GPL-3.0+"
+  spec.license       = "GPL-3.0-or-later"
 
   spec.files         = `git ls-files`.split($/)
   spec.files         = Dir['lib/**/*'] + ['LICENSE.txt', 'Rakefile', 'README.md']
