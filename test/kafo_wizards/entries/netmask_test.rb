@@ -31,7 +31,8 @@ describe KafoWizards::Entries::NetmaskEntry do
       err = proc {
         netmask.validate('127001/56')
       }.must_raise KafoWizards::ValidationError
-      expected_error_message = if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.1')
+      # only Ruby 3.1, 3.2 and 3.2 provide the invalid length.
+      expected_error_message = if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.1') && Gem::Version.new(RUBY_VERSION) < Gem::Version.new('3.4')
         "127001/56 is not valid netmask (invalid length: 4294967295)"
       else
         "127001/56 is not valid netmask (invalid length)"
